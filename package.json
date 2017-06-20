@@ -1,0 +1,46 @@
+{
+  "name": "serverless-shell",
+  "version": "0.1.0",
+  "engines": {
+    "node": ">=4.0"
+  },
+  "description": "Serverless Shell with env vars Plugin",
+  "author": "United Income <engineering@unitedincome.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/UnitedIncome/serverless-shell"
+  },
+  "keywords": [
+    "serverless",
+    "shell",
+    "environment",
+    "env",
+    "env vars",
+    "variables",
+    "environment variables",
+    "lambda",
+    "aws",
+    "aws lambda",
+    "amazon",
+    "amazon web services",
+    "serverless.com"
+  ],
+  "files": [
+    "index.js",
+    "LICENSE",
+    "package.json",
+    "README.md"
+  ],
+  "main": "index.js",
+  "bin": {},
+  "scripts": {
+    "test": "true",
+    "lint": "eslint *.js"
+  },
+  "devDependencies": {
+    "eslint": "^3.19.0",
+    "eslint-config-google": "^0.7.1"
+  },
+  "dependencies": {}
+}
