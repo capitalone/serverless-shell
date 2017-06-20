@@ -25,7 +25,7 @@ class ServerlessLocalShell {
 
     this.commands = {
       'shell': {
-         usage: 'Remove .requirements and requirements.zip',
+         usage: 'Drop to a REPL with your environment variables properly set',
          lifecycleEvents: [
            'shell',
          ],
