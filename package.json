@@ -1,6 +1,6 @@
 {
   "name": "serverless-shell",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "engines": {
     "node": ">=4.0"
   },
@@ -42,5 +42,7 @@
     "eslint": "^3.19.0",
     "eslint-config-google": "^0.7.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "bluebird": "^3.5.0"
+  }
 }

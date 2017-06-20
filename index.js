@@ -3,6 +3,7 @@
 
 const {spawnSync} = require('child_process');
 const repl = require('repl');
+const {Promise} = require('bluebird');
 
 /**
  * Plugin for Serverless 1.x that drops you to a shell with your env vars!
@@ -32,7 +33,7 @@ class ServerlessLocalShell {
     };
 
     this.hooks = {
-      'shell:shell': () => BbPromise.bind(this)
+      'shell:shell': () => Promise.bind(this)
         .then(this.loadEnvVars)
         .then(this.shell),
     };
