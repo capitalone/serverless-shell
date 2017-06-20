@@ -22,12 +22,6 @@ class ServerlessLocalShell {
     this.provider = this.serverless.getProvider(
       this.serverless.service.provider.name);
 
-    if (!_.get(this.serverless.service, 'package.exclude'))
-      _.set(this.serverless.service, ['package', 'exclude'], []);
-    this.serverless.service.package.exclude.push('.requirements/**');
-    if (!_.get(this.serverless.service, 'package.include'))
-      _.set(this.serverless.service, ['package', 'include'], []);
-
     this.commands = {
       'shell': {
          usage: 'Remove .requirements and requirements.zip',
