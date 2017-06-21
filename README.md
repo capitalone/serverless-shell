@@ -3,7 +3,7 @@
 [![serverless](http://public.serverless.com/badges/v3.svg)](http://www.serverless.com)
 [![npm](https://nodei.co/npm/serverless-shell.png?mini=true)](https://www.npmjs.com/package/serverless-shell)
 
-A Serverless v1.0 plugin to drop to a local shell with your environment
+A Serverless v1.x plugin to drop to a local shell with your environment
 variables from `serverless.yml`.
 
 
