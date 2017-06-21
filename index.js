@@ -88,6 +88,9 @@ class ServerlessLocalShell {
       this.serverless.cli.log(`Dropping to repl...`);
       repl.start();
     } else {
+      if (process.env.VIRTUAL_ENV) {
+        process.env.PATH = `${process.env.VIRTUAL_ENV}/bin:${process.env.PATH}`;
+      }
       this.serverless.cli.log(
         `Spawning ${this.serverless.service.provider.runtime}...`);
       spawnSync(this.serverless.service.provider.runtime, [], {
