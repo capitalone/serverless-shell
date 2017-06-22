@@ -43,3 +43,15 @@ various stages, it supports properly building the environment. For example:
 ```
 $ serverless -s staging shell -f status
 ```
+
+## Custom shell (babel) support
+If you want to launch a different shell than the runtime's default, you can
+specify that with in the `custom` section of your config. This can be used
+to for thing like using `babel-node` instead of `node` or even dropping to
+`bash` with the right env vars set.
+
+Example:
+```
+  custom:
+    shellBinary: babel-node
+```

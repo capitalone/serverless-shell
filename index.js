@@ -2,8 +2,8 @@
 'use strict';
 
 const {spawnSync} = require('child_process');
-const repl = require('repl');
 const {Promise} = require('bluebird');
+const _ = require('lodash');
 
 /**
  * Plugin for Serverless 1.x that drops you to a shell with your env vars!
@@ -58,7 +58,7 @@ class ServerlessLocalShell {
     || 1024;
 
     const lambdaDefaultEnvVars = {
-    PATH: '/usr/local/lib64/node-v4.3.x/bin:/usr/local/bin:/usr/bin/:/bin',
+    //PATH: '/usr/local/lib64/node-v4.3.x/bin:/usr/local/bin:/usr/bin/:/bin',
     LANG: 'en_US.UTF-8',
     LD_LIBRARY_PATH: '/usr/local/lib64/node-v4.3.x/lib:/lib64:/usr/lib64:/var/runtime:/var/runtime/lib:/var/task:/var/task/lib', // eslint-disable-line max-len
     LAMBDA_TASK_ROOT: '/var/task',
@@ -84,20 +84,19 @@ class ServerlessLocalShell {
    * load the right environment variables and start shell
    */
   shell() {
-    if (this.serverless.service.provider.runtime.startsWith('nodejs')) {
-      this.serverless.cli.log(`Dropping to repl...`);
-      repl.start();
+    let shellBinary;
+    if (_.has(this.serverless, 'service.custom.shellBinary')) {
+      shellBinary = this.serverless.service.custom.shellBinary;
+    } else if (this.serverless.service.provider.runtime.startsWith('nodejs')) {
+      shellBinary = 'node';
     } else {
-      if (process.env.VIRTUAL_ENV) {
-        process.env.PATH = `${process.env.VIRTUAL_ENV}/bin:${process.env.PATH}`;
-      }
-      this.serverless.cli.log(
-        `Spawning ${this.serverless.service.provider.runtime}...`);
-      spawnSync(this.serverless.service.provider.runtime, [], {
-        env: process.env,
-        stdio: [0, 0, 0],
-      });
+      shellBinary = this.serverless.service.provider.runtime;
     }
+      this.serverless.cli.log(`Spawning ${shellBinary}...`);
+      spawnSync(shellBinary, [], {
+        env: process.env,
+        stdio: 'inherit',
+      });
   };
 
   /**
