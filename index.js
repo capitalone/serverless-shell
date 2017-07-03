@@ -29,6 +29,13 @@ class ServerlessLocalShell {
          lifecycleEvents: [
            'shell',
          ],
+         options: {
+           function: {
+             usage: 'Specify the function whose environment you want (e.g. "--function myFunction")',
+             shortcut: 'f',
+             required: false,
+           },
+         },
       },
     };
 
@@ -46,7 +53,7 @@ class ServerlessLocalShell {
     try {
       // from invoke local's extendedValidate
       this.options.functionObj = this.serverless.service.getFunction(
-        this.options.f);
+        this.options.function);
     } catch (e) {
       // skip if no function defined
       this.options.functionObj = {};
