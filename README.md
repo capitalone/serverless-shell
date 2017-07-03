@@ -55,3 +55,8 @@ Example:
   custom:
     shellBinary: babel-node
 ```
+
+This feature can also be activated by a CLI switch:
+```
+sls shell -S bash
+```

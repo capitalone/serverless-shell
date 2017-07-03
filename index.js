@@ -35,6 +35,11 @@ class ServerlessLocalShell {
              shortcut: 'f',
              required: false,
            },
+           shell: {
+             usage: 'Specify a different shell (e.g. "--shell bash")',
+             shortcut: 'S',
+             required: false,
+           },
          },
       },
     };
@@ -92,7 +97,9 @@ class ServerlessLocalShell {
    */
   shell() {
     let shellBinary;
-    if (_.has(this.serverless, 'service.custom.shellBinary')) {
+    if (this.options.shell) {
+     shellBinary = this.options.shell;
+    } else if (_.has(this.serverless, 'service.custom.shellBinary')) {
       shellBinary = this.serverless.service.custom.shellBinary;
     } else if (this.serverless.service.provider.runtime.startsWith('nodejs')) {
       shellBinary = 'node';
