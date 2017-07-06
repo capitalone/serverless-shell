@@ -33,7 +33,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 and in a NodeJS project:
 ```
 $ serverless shell
-Serverless: Dropping to repl...
+Serverless: Spawning node...
 >  
 ```
 
