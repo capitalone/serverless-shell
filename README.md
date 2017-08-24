@@ -13,7 +13,7 @@ variables from `serverless.yml`.
 npm install --save serverless-shell
 ```
 
-Add the plugin and set some env vars to your `serverless.yml`:
+Add the plugin and set some env vars in your `serverless.yml`:
 
 ```yaml
 provider:
