@@ -89,8 +89,19 @@ class ServerlessLocalShell {
     const providerEnvVars = this.serverless.service.provider.environment || {};
     const functionEnvVars = this.options.functionObj.environment || {};
 
+    let enterpriseCredsEnvVars = {};
+    if (this.serverless.service.provider.name === 'aws') {
+      const { cachedCredentials } = this.serverless.getProvider('aws');
+      if (cachedCredentials) {
+        enterpriseCredsEnvVars.AWS_ACCESS_KEY_ID = cachedCredentials.accessKeyId;
+        enterpriseCredsEnvVars.AWS_SECRET_ACCESS_KEY = cachedCredentials.secretAccessKey;
+        enterpriseCredsEnvVars.AWS_SESSION_TOKEN = cachedCredentials.sessionToken;
+        enterpriseCredsEnvVars.AWS_REGION = cachedCredentials.region;
+      }
+    }
+
     Object.assign(
-      process.env, lambdaDefaultEnvVars, providerEnvVars, functionEnvVars);
+      process.env, lambdaDefaultEnvVars, providerEnvVars, functionEnvVars, enterpriseCredsEnvVars);
   }
   /**
    * load the right environment variables and start shell
@@ -107,6 +118,9 @@ class ServerlessLocalShell {
       shellBinary = this.serverless.service.provider.runtime;
     }
       this.serverless.cli.log(`Spawning ${shellBinary}...`);
+      if (process.env.SLS_DEBUG) {
+        console.log(`Setting env: ${JSON.stringify(process.env, null, 2)}`);
+      }
       spawnSync(shellBinary, [], {
         env: process.env,
         stdio: 'inherit',
