@@ -40,6 +40,12 @@ class ServerlessLocalShell {
              shortcut: 'S',
              required: false,
            },
+           quiet: {
+             usage: "Don't output anay log messages besides the subcommand's output",
+             shortcut: 'q',
+             required: false,
+             default: false,
+           },
          },
       },
     };
@@ -117,13 +123,16 @@ class ServerlessLocalShell {
     } else {
       shellBinary = this.serverless.service.provider.runtime;
     }
-      this.serverless.cli.log(`Spawning ${shellBinary}...`);
+      if (!this.options.quiet) {
+        this.serverless.cli.log(`Spawning ${shellBinary}...`);
+      }
       if (process.env.SLS_DEBUG) {
         console.log(`Setting env: ${JSON.stringify(process.env, null, 2)}`);
       }
       spawnSync(shellBinary, [], {
         env: process.env,
         stdio: 'inherit',
+        shell: true,
       });
   };
 
