@@ -34,11 +34,13 @@ class ServerlessLocalShell {
               '"--function myFunction")',
             shortcut: 'f',
             required: false,
+            type: 'string',
           },
           shell: {
             usage: 'Specify a different shell (e.g. "--shell bash")',
             shortcut: 'S',
             required: false,
+            type: 'string',
           },
           quiet: {
             usage:
@@ -46,6 +48,7 @@ class ServerlessLocalShell {
             shortcut: 'q',
             required: false,
             default: false,
+            type: 'boolean',
           },
         },
       },
