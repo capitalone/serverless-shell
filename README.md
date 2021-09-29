@@ -1,3 +1,5 @@
+# United Income at Capital One created this project with the intention of it helping us with Serverless Framework development and debugging. We have stopped providing updates to this project and archived it as of September 30th, 2021.
+
 # Serverless Shell
 
 [![serverless](http://public.serverless.com/badges/v3.svg)](http://www.serverless.com)
