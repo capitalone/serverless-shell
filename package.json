@@ -1,11 +1,11 @@
 {
   "name": "serverless-shell",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "engines": {
     "node": ">=6.0"
   },
   "description": "Serverless Shell with env vars Plugin",
-  "author": "United Income <engineering@unitedincome.com>",
+  "author": "United Income <uiengineering@capitalone.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
